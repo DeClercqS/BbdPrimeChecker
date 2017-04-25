@@ -1,0 +1,40 @@
+﻿@model todoMvc.Models.PrimeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h3>Prime number checker </h3>
+    </div>
+</div>
+    <div class="row">
+        <form asp-action="GeneratePrime">
+            <div class="form-group">
+                <span>
+                    @Html.LabelFor(model => model.InputNumber, "Number ", new { @class="control-label" })
+                </span>
+                <span>
+                    @Html.TextBoxFor(model => model.InputNumber, htmlAttributes: new { @class = "form-control" })
+                </span>
+                
+            </div>
+            <input type="submit" value="Generate Prime number" class="btn btn-primary" />
+        </form>
+</div>
+<br/>
+<div class="row">
+    @{ if (Model != null && Model.Numbers != null)
+        {
+            <h3>Results</h3>
+            <ul>
+                @foreach (var prime in Model.Numbers)
+                {
+                    <li>
+                        @prime
+                    </li>
+                }
+            </ul>
+        }
+    }
+</div>
